@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/beranda"
+        android:enabled="true"
+        android:icon="@drawable/round_home_24"
+        android:title="Beranda"/>
+    <item
+        android:id="@+id/tambah"
+        android:enabled="true"
+        android:icon="@drawable/baseline_add_box_24"
+        android:title="Tambah"/>
+</menu>

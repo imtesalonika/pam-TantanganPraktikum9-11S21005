@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Lost And Found</string>
+    <string name="password">Password</string>
+    <string name="login_huruf_besar">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="judul_aplikasi">Lost And Found</string>
+    <string name="login">Login</string>
+    <string name="belum_punya_akun_daftar">Belum punya akun? Daftar </string>
+    <string name="disini">disini</string>
+    <string name="register_huruf_besar">REGISTER</string>
+    <string name="nama">Nama</string>
+    <string name="sudah_punya_akun_login">Sudah punya akun? Login</string>
+    <string name="register">Register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
