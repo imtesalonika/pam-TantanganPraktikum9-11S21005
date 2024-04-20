@@ -53,6 +53,31 @@ class MainActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.complete -> {
+                    binding.barAtas.title= "Completed"
+                    loadFragment(CompletedFragment())
+                    true
+                }
+                R.id.not_complete -> {
+                    binding.barAtas.title= "Not Completed"
+                    loadFragment(NotCompleteFragment())
+                    true
+                }
+                R.id.is_me -> {
+                    binding.barAtas.title= "Is Me"
+                    loadFragment(IsMeFragment())
+                    true
+                }
+                R.id.lost -> {
+                    binding.barAtas.title = "Lost"
+                    loadFragment(LostFragment())
+                    true
+                }
+                R.id.found -> {
+                    binding.barAtas.title = "Found"
+                    loadFragment(FoundFragment())
+                    true
+                }
                 else -> false
             }
         }
@@ -68,6 +93,12 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(AddFragment())
                     true
                 }
+                R.id.tomboltandai -> {
+                    binding.barAtas.title="Lost Found Ditandai"
+                    loadFragment(DitandaiFragment())
+                    true
+                }
+
                 else -> false
             }
         }

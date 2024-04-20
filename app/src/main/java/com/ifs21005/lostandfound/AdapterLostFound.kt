@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ifs21005.lostandfound.models.DeleteResponse
@@ -17,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AdapterLostFound (private val dataset : ArrayList<LostFoundXX>, val context: Context?, val apiService : Api, val authToken : String, val currentUserName : String) : RecyclerView.Adapter<AdapterLostFound.ViewHolder>()  {
+class AdapterLostFound (private val dataset : ArrayList<LostFoundXX>, val context: Context?, val apiService : Api, val authToken : String, val currentUserName : String, val aksesDatabase : DataViewModel) : RecyclerView.Adapter<AdapterLostFound.ViewHolder>()  {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gambar : ImageView
         val judul : TextView
@@ -26,6 +27,8 @@ class AdapterLostFound (private val dataset : ArrayList<LostFoundXX>, val contex
         val user : TextView
         val update : Button
         val info : Button
+        val tombolSaved : Button
+
 
         init {
             delete = view.findViewById(R.id.button_delete)
@@ -35,9 +38,7 @@ class AdapterLostFound (private val dataset : ArrayList<LostFoundXX>, val contex
             gambar = view.findViewById(R.id.gambar_barang_lostandfound)
             judul = view.findViewById(R.id.title_thing)
             isi = view.findViewById(R.id.description_of_things)
-
-
-
+            tombolSaved = view.findViewById(R.id.tombol_save)
         }
     }
 
@@ -59,6 +60,16 @@ class AdapterLostFound (private val dataset : ArrayList<LostFoundXX>, val contex
         viewHolder.judul.text = dataset[(dataset.size - 1) - position].title
         viewHolder.isi.text = dataset[(dataset.size - 1) - position].description
         viewHolder.user.text = dataset[(dataset.size - 1) - position].author.name
+        viewHolder.tombolSaved.setOnClickListener{
+            val savedEntity = LostFoundEntity(
+                dataset[(dataset.size - 1) - position].id,
+                dataset[(dataset.size - 1) - position].title,
+                dataset[(dataset.size - 1) - position].description,
+                dataset[(dataset.size - 1) - position].author.name,
+                )
+            aksesDatabase.save(savedEntity)
+            Toast.makeText(context,"Berhasil Disimpan!", Toast.LENGTH_SHORT).show()
+        }
 
 
 

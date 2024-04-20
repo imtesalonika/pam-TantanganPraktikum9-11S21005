@@ -3,15 +3,14 @@ package com.ifs21005.lostandfound
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.ifs21005.lostandfound.models.GetAllLostAndFoundsResponse
 import com.ifs21005.lostandfound.models.GetCurrentUserResponse
 import com.ifs21005.lostandfound.models.User
@@ -20,8 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-class HomeFragment : Fragment() {
-
+class IsMeFragment : Fragment() {
     private lateinit var retrofit : Retrofit
     private lateinit var userYangLogin : User
     private lateinit var api : Api
@@ -33,19 +31,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_is_me, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.lostfound_list)
+        recyclerView = view.findViewById(R.id.my_recikle)
         retrofit = RetrofitInstance().getRetrofit()
         api = retrofit.create(Api::class.java)
 
-            val sharedPref = context?.getSharedPreferences(
-                "my_prefs_file",
-                Context.MODE_PRIVATE
-            )
+        val sharedPref = context?.getSharedPreferences(
+            "my_prefs_file",
+            Context.MODE_PRIVATE
+        )
         val tokenAsli = sharedPref?.getString("auth_token", "")
 
         token = "Bearer $tokenAsli"
@@ -55,8 +53,8 @@ class HomeFragment : Fragment() {
     }
 
     fun loadData () {
-        view?.findViewById<LinearProgressIndicator>(R.id.progress_horizontal)?.visibility = View.VISIBLE
-        val call = api.getLostFoundApi(token, null, null, null)
+//        view?.findViewById<LinearProgressIndicator>(R.id.progress_horizontal)?.visibility = View.VISIBLE
+        val call = api.getLostFoundApi(token, null, 1, null)
 
         call.enqueue(object : Callback<GetAllLostAndFoundsResponse> {
             override fun onResponse(
@@ -64,7 +62,7 @@ class HomeFragment : Fragment() {
                 p1: Response<GetAllLostAndFoundsResponse>
             ) {
                 try {
-                    val aksesDatabase = ViewModelProvider(this@HomeFragment)[DataViewModel::class.java]
+                    val aksesDatabase = ViewModelProvider(this@IsMeFragment)[DataViewModel::class.java]
                     val myAdapter = AdapterLostFound(p1.body()?.data!!.lostFounds, context, api, token, userYangLogin.name, aksesDatabase )
 
                     recyclerView.layoutManager = LinearLayoutManager(
@@ -74,7 +72,7 @@ class HomeFragment : Fragment() {
                     )
                     recyclerView.adapter = myAdapter
 
-                    view?.findViewById<LinearProgressIndicator>(R.id.progress_horizontal)?.hide()
+//                    view?.findViewById<LinearProgressIndicator>(R.id.progress_horizontal)?.hide()
                 } catch (e : UninitializedPropertyAccessException) {
                     Toast.makeText(context, "Reload page", Toast.LENGTH_SHORT).show()
                 }
@@ -105,4 +103,5 @@ class HomeFragment : Fragment() {
 
         })
     }
+
 }

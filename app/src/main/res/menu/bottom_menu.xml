@@ -9,4 +9,9 @@
         android:enabled="true"
         android:icon="@drawable/baseline_add_box_24"
         android:title="Tambah"/>
+    <item
+        android:id="@+id/tomboltandai"
+        android:enabled="true"
+        android:icon="@drawable/baseline_collections_bookmark_24"
+        android:title="Ditandai"/>
 </menu>
