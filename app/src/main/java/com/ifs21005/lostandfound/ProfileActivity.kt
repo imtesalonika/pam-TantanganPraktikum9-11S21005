@@ -1,7 +1,9 @@
 package com.ifs21005.lostandfound
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -33,6 +35,10 @@ class ProfileActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@ProfileActivity, R.layout.activity_profile)
 
         getCurrentUser()
+
+        binding.button.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity,EditPicture::class.java))
+        }
     }
 
     private fun getCurrentUser () {
@@ -58,7 +64,8 @@ class ProfileActivity : AppCompatActivity() {
 
 
                 if (p1.body()?.data!!.user.photo !== null) {
-                    Glide.with(this@ProfileActivity).load("https://public-api.delcom.org ${p1.body()?.data!!.user.photo}").into(binding.gambarProfile)
+                    Glide.with(this@ProfileActivity).load("https://public-api.delcom.org/${p1.body()?.data!!.user.photo}").into(binding.gambarProfile)
+                    Log.d("tagsaya", "https://public-api.delcom.org ${p1.body()?.data!!.user.photo}")
                 }
                 binding.loadingAnimation.visibility = View.INVISIBLE
                 binding.profilePengguna.visibility = View.VISIBLE

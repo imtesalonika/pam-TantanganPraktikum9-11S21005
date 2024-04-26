@@ -17,6 +17,9 @@
         android:theme="@style/Theme.LostAndFound"
         tools:targetApi="31">
         <activity
+            android:name=".EditPicture"
+            android:exported="false" />
+        <activity
             android:name=".UpdateItem"
             android:exported="false" />
         <activity

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EditPicture">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tempat_edit_picture_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/default_profile_pict"
+            app:civ_border_color="#000"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/select_picture"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/select_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Picture"
+            app:layout_constraintBottom_toTopOf="@id/save_select_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tempat_edit_picture_profile"
+            app:layout_constraintTop_toTopOf="@+id/tempat_edit_picture_profile" />
+
+        <Button
+            android:id="@+id/save_select_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="23dp"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="@+id/tempat_edit_picture_profile"
+            app:layout_constraintEnd_toEndOf="@+id/select_picture"
+            app:layout_constraintStart_toEndOf="@+id/tempat_edit_picture_profile"
+            app:layout_constraintStart_toStartOf="@+id/select_picture"
+            app:layout_constraintTop_toBottomOf="@+id/select_picture" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

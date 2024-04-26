@@ -80,4 +80,11 @@ interface Api {
         @Body lostFoundData:AddLostFoundRequest
     ): Call<AddLostFoundResponse>
 
+    @Multipart
+    @POST("users/photo")
+    fun simpanFotoProfil (
+        @Header("Authorization") authorization: String,
+        @Part photo: MultipartBody.Part,
+    ) : Call<Void>
+
 }
